@@ -1,0 +1,22 @@
+<div class="col-md-8 col-md-offset-2">
+        <div class="form-group">
+            <label>Set a size of the game field</label>
+            <input type="number"
+                   class="form-control"
+                   name="size"
+                   [(ngModel)]="size" />
+        </div>
+        <button class="btn btn-primary" (click)="onStart(size)">Start</button>
+        <button class="btn btn-primary" (click)="onReload(size)">Reload</button>
+</div>
+<div class="field"
+     [style.display]="visibility==true?'inline-block':'none'"
+     [style.width]="size*50+'px'">
+    <div class="table">
+        <div class="cell"
+             *ngFor="let item of cells; let i = index"
+             (click)="onMove(i)">
+                    {{item}}
+        </div>
+    </div>
+</div>
