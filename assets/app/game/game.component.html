@@ -1,15 +1,17 @@
 <div class="col-md-8 col-md-offset-2">
         <div class="form-group">
-            <label>Set a size of the game field</label>
+            <label>Set a size of the game field from 3</label>
             <input type="number"
                    class="form-control"
                    name="size"
+                   value="3"
                    [(ngModel)]="size" />
         </div>
         <button class="btn btn-primary" (click)="onStart(size)">Start</button>
         <button class="btn btn-primary" (click)="onReload(size)">Reload</button>
 </div>
-<div class="field"
+<div *ngIf="size > 2"
+     class="field"
      [style.display]="visibility==true?'inline-block':'none'"
      [style.width]="size*50+'px'">
     <div class="table">

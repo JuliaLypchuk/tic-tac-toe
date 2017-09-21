@@ -18,24 +18,32 @@ export class GameComponent implements OnInit {
     //counter: number = 0;
     field : number;
     size: number;
-    winner: boolean;
+    winner: boolean = false;
     cell : string;
 
     onStart(size : number) {
-        this.visibility = true;
-        this.field = size * size;
-        for (var i = 0; i < this.field; i++) {
-            this.cells[i] = "";
+        if (size > 2) {
+            this.visibility = true;
+            this.winner = false;
+            this.field = size * size;
+            for (var i = 0; i < this.field; i++) {
+                this.cells[i] = "";
+            }
+            this.size = size;
         }
-        this.size = size;
+        else {
+            alert("Danger!");
+            this.onReload(3);
+        }
     }
 
     onReload(size) {
-        size = 0;
+        size = 3;
         this.size = size;
         this.field = size;
         this.visibility = false;
         this.cells.length = 0;
+        this.winner = false;
     }
 
     cells: string[] = ["x","o"];
@@ -49,21 +57,22 @@ export class GameComponent implements OnInit {
         }*/
 
         //random move by "O"
-        if (this.cells[idx] == "") {
+        if (!this.winner && this.cells[idx] == "") {
             this.cells[idx] = this.x;
 
             this.cell = this.cells[idx];
             this.doCheck();
-
-            for (var i = 0; i < this.field; i++) {
-                let id = Math.floor(Math.random() * this.field);
-                console.log("random id = " + id);
-                console.log("random cell[id] = " + this.cells[id]);
-                if (this.cells[id] == "") {
-                    this.cells[id] = this.o;
-                    this.cell = this.cells[id];
-                    this.doCheck();
-                    break;
+            if (!this.winner) {
+                for (var i = 0; i < this.field; i++) {
+                    let id = Math.floor(Math.random() * this.field);
+                    console.log("random id = " + id);
+                    console.log("random cell[id] = " + this.cells[id]);
+                    if (this.cells[id] === "") {
+                        this.cells[id] = this.o;
+                        this.cell = this.cells[id];
+                        this.doCheck();
+                        return;
+                    }
                 }
             }
         }
@@ -77,8 +86,9 @@ export class GameComponent implements OnInit {
                     this.winner = false;
                 }
             }
-            if (this.winner == true) {
+            if (this.winner) {
                 alert("The " + this.cell + " win!");
+                return;
             }
         }
         //checking rows
@@ -89,9 +99,9 @@ export class GameComponent implements OnInit {
                     this.winner = false;
                 }
             }
-            if (this.winner == true) {
+            if (this.winner) {
                 alert("The " + this.cell + " win!");
-                break;
+                return;
             }
         }
         //checking first diagonal
@@ -101,8 +111,9 @@ export class GameComponent implements OnInit {
                 this.winner = false;
             }
         }
-        if (this.winner == true) {
+        if (this.winner) {
             alert("The " + this.cell + " win!");
+            return;
         }
         //checking second diagonal
         this.winner = true;
@@ -111,8 +122,9 @@ export class GameComponent implements OnInit {
                 this.winner = false;
             }
         }
-        if (this.winner == true) {
+        if (this.winner) {
             alert("The " + this.cell + " win!");
+            return;
         }
     }
 

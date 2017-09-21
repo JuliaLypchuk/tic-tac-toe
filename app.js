@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 var appRoutes = require('./routes/app');
+//var gameRoutes = require('./routes/game');
 var messageRoutes = require('./routes/messages');
 var userRoutes = require('./routes/user');
 
@@ -32,6 +33,7 @@ app.use(function (req, res, next) {
     next();
 });
 
+//app.use('/game', gameRoutes);
 app.use('/message', messageRoutes);
 app.use('/user', userRoutes);
 app.use('/', appRoutes);
@@ -40,6 +42,5 @@ app.use('/', appRoutes);
 app.use(function (req, res, next) {
     return res.render('index');
 });
-
 
 module.exports = app;

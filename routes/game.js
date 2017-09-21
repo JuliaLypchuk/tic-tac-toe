@@ -1,4 +1,4 @@
-var express = require('express');
+/*var express = require('express');
 var router = express.Router();
 var jwt = require('jsonwebtoken');
 
@@ -6,7 +6,7 @@ var User = require('../models/user');
 var Game = require('../models/game');
 
 router.get('/', function (req, res, next) {
-    Message.find()
+    GameScore.find()
         .populate('user', 'firstName')
         .exec(function (err, messages) {
             if (err) {
@@ -37,6 +37,4 @@ router.use('/', function (req, res, next) {
     })
 });
 
-
-
-module.exports = router;
+module.exports = router;*/
