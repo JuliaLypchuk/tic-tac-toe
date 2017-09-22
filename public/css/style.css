@@ -1,10 +1,26 @@
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
 
+@font-face {
+  font-family: Porky;
+  src: url(../fonts/PORKYS_.TTF);
+}
+@font-face {
+  font-family: KRToonNumbers;
+  src: url(../fonts/KRToonNumbers.ttf);
+}
+@font-face {
+  font-family: KOMIKAHB;
+  src: url(../fonts/KOMIKAHB.ttf);
+}
+
 body {
   margin: 20px;
-  background-color: #a0a0a0;
+  background-color: #444;
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: KOMIKAHB;
+  font-size: 14px;
+  color: #fff;
+  font-weight: lighter;
 }
 .actions {
   text-align: center;
@@ -12,9 +28,14 @@ body {
 a {
    color: #00B7FF;
  }
-.ai {
-  /*background-image: url('./img/ai.jpg');*/
+.large-input {
+  font-family: KRToonNumbers;
+  width: 20%;
+  height: 60pt;
+  font-size: 60px;
+  margin: 10px;
 }
+
 .invisible {
   display: none;
 }
@@ -27,7 +48,8 @@ a {
 }
 .cell {
   background-color: white;
-  border: 2px solid #a0a0a0;
+  font-family: Porky;
+  border: 2px solid #444;
   float: left;
 
   /*height: 28px;
@@ -35,11 +57,18 @@ a {
   height: 50px;
   width: 50px;
   text-align: center;
-  font-size: 25pt;
+  font-size: 35pt;
+  font-weight: 800;
+  color: #000;
 }
 .cell:hover {
   border-color: #87CEEB;
 }
 .player {
   /*background-image: url('./img/player.jpg');*/
+}
+
+.winner {
+  font-size: xx-large;
+  padding: 15px;
 }

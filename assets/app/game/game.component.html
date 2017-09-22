@@ -1,14 +1,17 @@
 <div class="col-md-8 col-md-offset-2">
         <div class="form-group">
-            <label>Set a size of the game field from 3</label>
+            <label>Set a size of the game field that more than 3</label>
             <input type="number"
-                   class="form-control"
+                   class="form-control large-input"
                    name="size"
                    value="3"
                    [(ngModel)]="size" />
         </div>
         <button class="btn btn-primary" (click)="onStart(size)">Start</button>
         <button class="btn btn-primary" (click)="onReload(size)">Reload</button>
+</div>
+<div class="winner" [style.display]="winner?'block':'none'">
+    <label>The <strong>{{cell}}</strong> is a winner!!!</label>
 </div>
 <div *ngIf="size > 2"
      class="field"

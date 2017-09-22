@@ -1,4 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
+import { Game } from "./game.model";
+import { GameService } from "./game.service";
 
 @Component({
     selector: 'app-game',
@@ -8,7 +10,9 @@ import { Component, OnInit } from "@angular/core";
 
 export class GameComponent implements OnInit {
 
-    constructor() { }
+    @Input() game: Game;
+
+    constructor(private gameService: GameService) {}
     ngOnInit() { }
 
     visibility: boolean = false;
@@ -19,7 +23,7 @@ export class GameComponent implements OnInit {
     field : number;
     size: number;
     winner: boolean = false;
-    cell : string;
+    cell : string = " ...";
 
     onStart(size : number) {
         if (size > 2) {
@@ -35,15 +39,6 @@ export class GameComponent implements OnInit {
             alert("Danger!");
             this.onReload(3);
         }
-    }
-
-    onReload(size) {
-        size = 3;
-        this.size = size;
-        this.field = size;
-        this.visibility = false;
-        this.cells.length = 0;
-        this.winner = false;
     }
 
     cells: string[] = ["x","o"];
@@ -87,7 +82,7 @@ export class GameComponent implements OnInit {
                 }
             }
             if (this.winner) {
-                alert("The " + this.cell + " win!");
+                //alert("The " + this.cell + " win!");
                 return;
             }
         }
@@ -100,7 +95,7 @@ export class GameComponent implements OnInit {
                 }
             }
             if (this.winner) {
-                alert("The " + this.cell + " win!");
+                //alert("The " + this.cell + " win!");
                 return;
             }
         }
@@ -112,7 +107,7 @@ export class GameComponent implements OnInit {
             }
         }
         if (this.winner) {
-            alert("The " + this.cell + " win!");
+            //alert("The " + this.cell + " win!");
             return;
         }
         //checking second diagonal
@@ -123,9 +118,27 @@ export class GameComponent implements OnInit {
             }
         }
         if (this.winner) {
-            alert("The " + this.cell + " win!");
+            //alert("The " + this.cell + " win!");
             return;
         }
     }
 
+    onReload(size) {
+            // Save game score
+            const game = new Game(1, 2, 3, 4, 5, 6);
+
+            this.gameService.addGame(game)
+                .subscribe(
+                    data => console.log(data),
+                    error => console.error(error)
+                );
+
+
+        size = 3;
+        this.size = size;
+        this.field = size;
+        this.visibility = false;
+        this.cells.length = 0;
+        this.winner = false;
+    }
 }
